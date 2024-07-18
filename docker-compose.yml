@@ -1,0 +1,21 @@
+networks:
+  default:
+    name: gerenciador-de-tarefas
+volumes:
+  gerenciador-de-tarefas_pg-data:
+    name: gerenciador-de-tarefas_pg-data
+services:
+  database:
+    container_name: gerenciador-de-tarefas_database
+    image: postgres:13-bullseye
+    working_dir: /usr/gerenciador-de-tarefas/database
+    restart: always
+    ports:
+      - 5432:5432
+    volumes:
+      - gerenciador-de-tarefas_pg-data:/pg-data
+    environment:
+      POSTGRES_PASSWORD: gerenciador-de-tarefas
+      POSTGRES_USER: gerenciador-de-tarefas
+      POSTGRES_DB: gerenciador-de-tarefas      
+      PGDATA: /pg-data
